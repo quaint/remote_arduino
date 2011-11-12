@@ -3,8 +3,13 @@
 <table>
   <tr>
     <th>Name</th>
+<!--
     <th>Description</th>
     <th>Image url</th>
+-->
+		<th>Port</th>
+		<th>Board</th>
+		<th>State</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +18,13 @@
 <% @devices.each do |device| %>
   <tr>
     <td><%= device.name %></td>
+<!--
     <td><%= device.description %></td>
     <td><%= device.image_url %></td>
+-->
+		<td><%= device.port %></td>
+		<td><%= link_to device.board.name, device.board if device.board %></td>
+		<td><%= device.state %><%= button_to "Toggle", :action => "toggle", :id => device.id %></td>
     <td><%= link_to 'Show', device %></td>
     <td><%= link_to 'Edit', edit_device_path(device) %></td>
     <td><%= link_to 'Destroy', device, :confirm => 'Are you sure?', :method => :delete %></td>

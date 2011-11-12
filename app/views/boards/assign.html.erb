@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @board.name %>
+</p>
+
+<p>
+	<b>Ports:</b>
+	<ul>
+	<% (1..@board.outputs).each do |port| %>
+		<li>
+			<%= port %>
+			<%= form_for :port do |f| %>
+				<%= f.hidden_field(:port, :value => port) %>
+				<%= f.collection_select(:device_id, Device.all, :id, :name, :include_blank => true, :selected => @board.device(port)) %>
+			  <%= f.submit %>
+			<% end %>
+		</li>
+	<% end %>
+	</ul>
+</p>
+
+<%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Back', boards_path %>

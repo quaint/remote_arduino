@@ -15,6 +15,20 @@
   <%= @device.image_url %>
 </p>
 
+<p>
+  <b>Port:</b>
+  <%= @device.port %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @device.state %>
+</p>
+
+<p>
+  <b>Board:</b>
+	<%= link_to @device.board.name, @device.board if @device.board %>
+</p>
 
 <%= link_to 'Edit', edit_device_path(@device) %> |
 <%= link_to 'Back', devices_path %>

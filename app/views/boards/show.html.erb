@@ -11,10 +11,29 @@
 </p>
 
 <p>
+  <b>Serial:</b>
+  <%= @board.serial %>
+</p>
+
+<p>
   <b>Outputs:</b>
   <%= @board.outputs %>
 </p>
 
+<p>
+	<b>Devices:</b>
+	<ul>
+	<% @board.devices.each do |device| %>
+		<li>
+			<b><%= link_to device.name, device %></b>
+			<% if device.port %>
+		 		on port <b><%= device.port %></b>
+			<% end %>
+		</li>
+	<% end %>
+	</ul>
+</p>
 
 <%= link_to 'Edit', edit_board_path(@board) %> |
+<%= link_to 'Ports', assign_board_path(@board) %> |
 <%= link_to 'Back', boards_path %>

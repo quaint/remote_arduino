@@ -3,20 +3,28 @@
 <table>
   <tr>
     <th>Name</th>
+<!--
     <th>Description</th>
+-->
+		<th>Serial</th>
     <th>Outputs</th>
     <th></th>
     <th></th>
     <th></th>
+		<th></th>
   </tr>
 
 <% @boards.each do |board| %>
   <tr>
     <td><%= board.name %></td>
+<!--
     <td><%= board.description %></td>
+-->
+		<td><%= board.serial %>
     <td><%= board.outputs %></td>
     <td><%= link_to 'Show', board %></td>
     <td><%= link_to 'Edit', edit_board_path(board) %></td>
+		<td><%= link_to 'Ports', assign_board_path(board) %></td>
     <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

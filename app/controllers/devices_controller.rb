@@ -80,4 +80,13 @@ class DevicesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # POST /devices/1/toggle
+  def toggle
+    @device = Device.find(params[:id])
+    @device.state = !@device.state
+    if(@device.save)
+      redirect_to(devices_url, :notice => 'Device state toggled.')
+    end
+  end
 end

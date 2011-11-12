@@ -23,6 +23,18 @@
     <%= f.label :image_url %><br />
     <%= f.text_field :image_url %>
   </div>
+	<div class="field">
+    <%= f.label :port %><br />
+    <%= f.text_field :port %>
+  </div>
+	<div class="field">
+    <%= f.label :state %><br />
+    <%= f.check_box :state %>
+  </div>
+  <div>
+	<%= f.label :board_id %>
+	<%= collection_select(:device, :board_id, Board.all, :id, :name, :prompt => true) %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

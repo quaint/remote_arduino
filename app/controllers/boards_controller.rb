@@ -36,6 +36,22 @@ class BoardsController < ApplicationController
   def edit
     @board = Board.find(params[:id])
   end
+  
+  # GET /boards/1/assign
+  def assign
+    @board = Board.find(params[:id])
+  end
+  
+  # POST /boards/1/assign
+  def port
+    @board = Board.find(params[:id])
+    @device = Device.find(params[:port][:device_id])
+    @device.board = @board
+    @device.port = params[:port][:port]
+    if(@device.save)
+      redirect_to(@board, :notice => 'Board was successfully updated.')
+    end
+  end
 
   # POST /boards
   # POST /boards.xml

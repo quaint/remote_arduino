@@ -1,9 +1,13 @@
 Remote::Application.routes.draw do
-  resources :boards
-
+  
   get "main/index"
-
+  
+  resources :boards
   resources :devices
+
+  match 'boards/:id/assign' => 'boards#assign', :as => :assign_board, :via => :get
+  match 'boards/:id/assign' => 'boards#port', :as => :port_board, :via => :post
+  match 'devices/:id/toggle' => 'devices#toggle', :as => :toggle_device, :via => :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
