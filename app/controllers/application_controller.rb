@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   
   def authorize
     if User.count.zero?
-      redirect_to new_user_path, :notice => "Please create a user"
+      session[:user_id] = 1
       return
     end
     unless User.find_by_id(session[:user_id])
