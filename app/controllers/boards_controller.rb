@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  skip_before_filter :authorize, :only => :sync
+  skip_before_filter :sync
   
   # GET /boards
   # GET /boards.xml
