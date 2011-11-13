@@ -96,4 +96,10 @@ class BoardsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  # GET /boards/1234/sync
+  def sync
+    @board = Board.where("serial = ?", params[:serial]).first
+  end
+  
 end

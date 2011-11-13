@@ -1,0 +1,8 @@
+<device_list>
+<% @board.devices.each do |device| %>
+	<device>
+		<port><%= device.port %></port>
+		<state><%= device.state %></state>
+	</device>
+<% end %>
+</device_list>
