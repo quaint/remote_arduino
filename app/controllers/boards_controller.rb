@@ -45,11 +45,19 @@ class BoardsController < ApplicationController
   # POST /boards/1/assign
   def port
     @board = Board.find(params[:id])
-    @device = Device.find(params[:port][:device_id])
-    @device.board = @board
-    @device.port = params[:port][:port]
-    if(@device.save)
-      redirect_to(@board, :notice => 'Board was successfully updated.')
+    if( @device_old = @board.devices.find_by_port( params[:port][:port] ) )
+      @device_old.board = nil
+      @device_old.port = nil
+      @device_old.save
+    end
+    
+    @device_new = Device.find(params[:port][:device_id])
+    @device_new.board = @board
+    @device_new.port = params[:port][:port]
+    if(@device_new.save)
+      redirect_to(assign_board_path(@board), :notice => 'Board was successfully updated.')
+    else
+      redirect_to(assign_board_path(@board), :notice => 'Something went wrong.')
     end
   end
 
@@ -97,9 +105,10 @@ class BoardsController < ApplicationController
     end
   end
   
-  # GET /boards/1234/sync
+  # GET /boards/sync/1234
   def sync
     @board = Board.where("serial = ?", params[:serial]).first
+    render :xml => @board, :include => [ :devices ], :only => [ :serial, :state, :port ]
   end
   
 end

@@ -7,7 +7,7 @@ Remote::Application.routes.draw do
 
   match 'boards/:id/assign' => 'boards#assign', :as => :assign_board, :via => :get
   match 'boards/:id/assign' => 'boards#port', :as => :port_board, :via => :post
-  match 'boards/:serial/sync' => 'boards#sync', :as => :sync_board, :via => :get
+  match 'boards/sync/:serial' => 'boards#sync', :as => :sync_board, :via => :get
   match 'devices/:id/toggle' => 'devices#toggle', :as => :toggle_device, :via => :post
 
   # The priority is based upon order of creation:

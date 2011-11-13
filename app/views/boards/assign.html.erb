@@ -13,7 +13,7 @@
 			<%= port %>
 			<%= form_for :port do |f| %>
 				<%= f.hidden_field(:port, :value => port) %>
-				<%= f.collection_select(:device_id, Device.all, :id, :name, :include_blank => true, :selected => @board.device(port)) %>
+				<%= f.collection_select(:device_id, Device.all, :id, :name, :include_blank => true, :selected => @board.device_id_for_port(port)) %>
 			  <%= f.submit %>
 			<% end %>
 		</li>

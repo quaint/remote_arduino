@@ -7,12 +7,8 @@ class Board < ActiveRecord::Base
   validates :outputs, :presence => true
   validates_numericality_of :outputs, :only_integer => true
   
-  def device(port)
-    devices.each do |device|
-      if device.port == port
-        return device.id
-      end
-    end
+  def device_id_for_port(port)
+    devices.find_by_port( port ).id if devices.find_by_port( port )
   end
-  
+
 end
