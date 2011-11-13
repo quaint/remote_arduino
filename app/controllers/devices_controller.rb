@@ -85,7 +85,7 @@ class DevicesController < ApplicationController
   def toggle
     @device = Device.find(params[:id])
     @device.state = !@device.state
-    if(@device.save)
+    if @device.save
       redirect_to(devices_url, :notice => 'Device state toggled.')
     end
   end
