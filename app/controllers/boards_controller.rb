@@ -112,7 +112,10 @@ class BoardsController < ApplicationController
   # GET /boards/sync/1234
   def sync
     @board = Board.where("serial = ?", params[:serial]).first
-    render :xml => @board, :include => [ :devices ], :only => [ :serial, :port, :state ], :skip_types => true
+    
+    respond_to do |format|
+      format.xml { render :xml => @board, :include => [ :devices ], :only => [ :serial, :port, :state ], :skip_types => true }
+    end
   end
   
 end
