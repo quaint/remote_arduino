@@ -1,7 +1,14 @@
 Remote::Application.routes.draw do
   
-  get "main/index"
+  get "admin" => "admin#index"
   
+  controller :sessions do
+    get "login" => :new
+    post "login" => :create
+    delete "logout" => :destroy
+  end
+
+  resources :users
   resources :boards
   resources :devices
 

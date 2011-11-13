@@ -50,7 +50,7 @@ class BoardsController < ApplicationController
       @device_old.port = nil
       @device_old.save
     end
-    if !params[:port][:device_id].empty?
+    if params[:port][:device_id].present?
       @device_new = Device.find(params[:port][:device_id])
       @device_new.board = @board
       @device_new.port = params[:port][:port]
