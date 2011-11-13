@@ -50,15 +50,19 @@ class BoardsController < ApplicationController
       @device_old.port = nil
       @device_old.save
     end
-    
-    @device_new = Device.find(params[:port][:device_id])
-    @device_new.board = @board
-    @device_new.port = params[:port][:port]
-    if(@device_new.save)
-      redirect_to(assign_board_path(@board), :notice => 'Board was successfully updated.')
-    else
-      redirect_to(assign_board_path(@board), :notice => 'Something went wrong.')
+    if( !params[:port][:device_id].empty? )
+      @device_new = Device.find(params[:port][:device_id])
+      @device_new.board = @board
+      @device_new.port = params[:port][:port]
+      if(@device_new.save)
+        redirect_to(assign_board_path(@board), :notice => 'Board was successfully updated.')
+        return
+      else
+        redirect_to(assign_board_path(@board), :notice => 'Something went wrong.')
+        return
+      end
     end
+    redirect_to(assign_board_path(@board), :notice => 'Board was successfully updated.')
   end
 
   # POST /boards
