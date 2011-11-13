@@ -13,6 +13,7 @@
     <th></th>
     <th></th>
     <th></th>
+		<th></th>
   </tr>
 
 <% @devices.each do |device| %>
@@ -24,7 +25,8 @@
 -->
 		<td><%= device.port %></td>
 		<td><%= link_to device.board.name, device.board if device.board %></td>
-		<td><%= device.state %><%= button_to "Toggle", :action => "toggle", :id => device.id %></td>
+		<td><%= device.working %></td>
+		<td><%= button_to device.state ? "Turn Off" : "Turn On", :action => "toggle", :id => device.id %></td>
     <td><%= link_to 'Show', device %></td>
     <td><%= link_to 'Edit', edit_device_path(device) %></td>
     <td><%= link_to 'Destroy', device, :confirm => 'Are you sure?', :method => :delete %></td>

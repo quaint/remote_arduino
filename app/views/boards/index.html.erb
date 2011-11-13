@@ -22,9 +22,9 @@
 -->
 		<td><%= board.serial %>
     <td><%= board.outputs %></td>
+		<td><%= link_to 'Ports', assign_board_path(board) %></td>
     <td><%= link_to 'Show', board %></td>
     <td><%= link_to 'Edit', edit_board_path(board) %></td>
-		<td><%= link_to 'Ports', assign_board_path(board) %></td>
     <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

@@ -17,6 +17,14 @@ class Device < ActiveRecord::Base
     end
   end
   
+  def working
+    if state
+      "on"
+    else
+      "off"
+    end
+  end
+  
   private
   
   def build_xml(xml)
