@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  skip_before_filter :authorize, :only => :sync
+  
   # GET /boards
   # GET /boards.xml
   def index

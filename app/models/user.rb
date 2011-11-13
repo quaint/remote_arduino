@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   end
   
   def User.authenticate(name, password)
+    if User.count.zero?
+      user = User.new(:user_id => 1)
+    end
     if user = find_by_name(name)
       if user.hashed_password == encrypt_password(password, user.salt)
         user
