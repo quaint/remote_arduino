@@ -56,10 +56,7 @@ class BoardsController < ApplicationController
       @device_new = Device.find(params[:port][:device_id])
       @device_new.board = @board
       @device_new.port = params[:port][:port]
-      if @device_new.save
-        redirect_to(assign_board_path(@board), :notice => 'Board was successfully updated.')
-        return
-      else
+      unless @device_new.save
         redirect_to(assign_board_path(@board), :notice => 'Something went wrong.')
         return
       end
@@ -111,7 +108,7 @@ class BoardsController < ApplicationController
     end
   end
   
-  # GET /boards/sync/1234
+  # GET /boards/sync/12345
   def sync
     @board = Board.where("serial = ?", params[:serial]).first
     
