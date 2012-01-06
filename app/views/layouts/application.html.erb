@@ -11,6 +11,7 @@
 <% if session[:user_id] %>
     <%= link_to 'Devices', devices_path %>
     <%= link_to 'Sensors', sensors_path %>
+	<%= link_to 'Readings', readings_path %>
     <%= link_to 'Boards', boards_path %>
     <%= link_to 'Users', users_path %>
     <%= button_to 'Logout', logout_path, :method => :delete %>

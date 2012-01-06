@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106151044) do
+ActiveRecord::Schema.define(:version => 20120106152817) do
 
   create_table "boards", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20120106151044) do
     t.integer  "board_id"
     t.integer  "port"
     t.boolean  "state",       :default => false
+  end
+
+  create_table "readings", :force => true do |t|
+    t.decimal  "value"
+    t.integer  "sensor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sensors", :force => true do |t|
