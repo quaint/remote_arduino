@@ -1,4 +1,7 @@
 class ReadingsController < ApplicationController
+  
+  skip_before_filter :authorize, :only => :upload
+  
   # GET /readings
   # GET /readings.xml
   def index
@@ -50,6 +53,17 @@ class ReadingsController < ApplicationController
         format.html { render :action => "new" }
         format.xml  { render :xml => @reading.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  # POST /readings/upload
+  def upload
+    @sensor = Sensor.where("serial = ?", params[:serial]).first
+    if(@sensor)
+      @reading = Reading.new;
+      @reading.value = params[:value]
+      @reading.sensor = @sensor
+      @reading.save
     end
   end
 

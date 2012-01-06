@@ -1,22 +1,23 @@
 Remote::Application.routes.draw do
 
-  resources :readings
-
   controller :sessions do
     get "login" => :new
     post "login" => :create
     delete "logout" => :destroy
   end
 
-  resources :users
-  resources :boards
-  resources :devices
-  resources :sensors
-
   match 'boards/:id/assign' => 'boards#assign', :as => :assign_board, :via => :get
   match 'boards/:id/assign' => 'boards#port', :as => :port_board, :via => :post
   match 'boards/sync/:serial' => 'boards#sync', :as => :sync_board, :via => :get
   match 'devices/:id/toggle' => 'devices#toggle', :as => :toggle_device, :via => :post
+  match 'readings/upload' => 'readings#upload', :as => :upload_reading, :via => :post
+
+  resources :users
+  resources :boards
+  resources :devices
+  resources :sensors
+  resources :readings
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

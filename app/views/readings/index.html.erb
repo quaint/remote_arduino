@@ -4,6 +4,7 @@
   <tr>
     <th>Value</th>
     <th>Sensor</th>
+	<th>Date</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= reading.value %></td>
     <td><%= reading.sensor.name %></td>
+	<td><%= reading.created_at %></td>
 <!--
     <td><%= link_to 'Show', reading %></td>
     <td><%= link_to 'Edit', edit_reading_path(reading) %></td>
