@@ -1,5 +1,5 @@
 Remote::Application.routes.draw do
-  
+
   controller :sessions do
     get "login" => :new
     post "login" => :create
@@ -9,6 +9,7 @@ Remote::Application.routes.draw do
   resources :users
   resources :boards
   resources :devices
+  resources :sensors
 
   match 'boards/:id/assign' => 'boards#assign', :as => :assign_board, :via => :get
   match 'boards/:id/assign' => 'boards#port', :as => :port_board, :via => :post

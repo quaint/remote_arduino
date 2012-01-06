@@ -34,6 +34,17 @@
 	</ul>
 </p>
 
+<p>
+	<b>Sensors:</b>
+	<ul>
+	<% @board.sensors.each do |sensor| %>
+		<li>
+			<b><%= link_to sensor.name, sensor %></b>
+		</li>
+	<% end %>
+	</ul>
+</p>
+
 <%= link_to 'Edit', edit_board_path(@board) %> |
 <%= link_to 'Ports', assign_board_path(@board) %> |
 <%= link_to 'Back', boards_path %>

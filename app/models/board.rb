@@ -1,6 +1,7 @@
 class Board < ActiveRecord::Base
   
   has_many :devices
+  has_many :sensors
   default_scope :order => 'name'
   
   validates :name, :serial, :presence => true, :uniqueness => true
