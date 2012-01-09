@@ -28,7 +28,7 @@ class Device < ActiveRecord::Base
   private
   
   def build_xml(xml)
-    xml.device { |d| d.port( port ); d.state( state ? 1 : 0 ) }
+    xml.device { |d| d.port( port ); d.kind( kind ); d.state( state ? 1 : 0 ); d.setting( setting ) }
   end
   
 end
