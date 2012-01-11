@@ -27,7 +27,7 @@ class Device < ActiveRecord::Base
     end
   end
   
-  def readabl_kind
+  def readable_kind
     KINDS[kind]
   end
   
