@@ -6,6 +6,8 @@ class Device < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates_numericality_of :port, :greater_than => 0, :less_than_or_equal_to => Proc.new { |device| device.board.outputs }, :only_integer => true, :allow_nil => true
   validates_uniqueness_of :port, :scope => :board_id, :allow_nil => true
+  validates_numericality_of :setting, :less_than_or_equal_to => 180
+  validates_numericality_of :setting, :greater_than_or_equal_to => 0
 
   KINDS = {1 => :relay, 2 => :servo}
 
