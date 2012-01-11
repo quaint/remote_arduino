@@ -8,6 +8,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @sensors.each do |sensor| %>
@@ -15,6 +16,7 @@
     <td><%= sensor.name %></td>
     <td><%= sensor.serial %></td>
     <td><%= link_to sensor.board.name, sensor.board if sensor.board %></td>
+    <td><%= link_to 'Readings', filter_readings_path(sensor.serial) %></td>
     <td><%= link_to 'Show', sensor %></td>
     <td><%= link_to 'Edit', edit_sensor_path(sensor) %></td>
     <td><%= link_to 'Destroy', sensor, :confirm => 'Are you sure?', :method => :delete %></td>

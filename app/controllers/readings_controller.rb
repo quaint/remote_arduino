@@ -5,13 +5,20 @@ class ReadingsController < ApplicationController
   # GET /readings
   # GET /readings.xml
   def index
-    @readings = Reading.paginate :page=>params[:page], :order=>'created_at desc',
-        :per_page => 10
+    @readings = Reading.page(params[:page]).order('created_at desc').per_page(10)
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @readings }
     end
+  end
+
+  # GET /readings/filter/12345
+  # GET /readings/filter/12345.xml
+  def filtered
+  	sensor = Sensor.where(["serial = ?", params[:serial]]).first
+    @readings = Reading.where(:sensor_id => sensor.id).paginate(:page => params[:page]).order('created_at desc').per_page(10)
+	render "index"
   end
 
   # GET /readings/1
