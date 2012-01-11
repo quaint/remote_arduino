@@ -7,6 +7,8 @@ class Device < ActiveRecord::Base
   validates_numericality_of :port, :greater_than => 0, :less_than_or_equal_to => Proc.new { |device| device.board.outputs }, :only_integer => true, :allow_nil => true
   validates_uniqueness_of :port, :scope => :board_id, :allow_nil => true
 
+  KINDS = {1 => :relay, 2 => :servo}
+
   def to_xml(options={})
     if options[:builder]
       build_xml(options[:builder])
@@ -23,6 +25,10 @@ class Device < ActiveRecord::Base
     else
       "off"
     end
+  end
+  
+  def readabl_kind
+    KINDS[kind]
   end
   
   private

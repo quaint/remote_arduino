@@ -27,7 +27,7 @@
 -->
 		<td><%= device.port %></td>
 		<td><%= link_to device.board.name, device.board if device.board %></td>
-		<td><%= device.kind %></td>
+		<td><%= device.readable_kind %></td>
 		<td><%= device.setting %></td>
 		<td><%= device.working %></td>
 		<td><%= button_to device.state ? "Turn Off" : "Turn On", :action => "toggle", :id => device.id %></td>
