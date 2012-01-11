@@ -2,14 +2,14 @@ class Device < ActiveRecord::Base
   
   belongs_to :board
   default_scope :order => 'name'
+
+  KINDS = { :relay => "1", :servo => "2" }
   
   validates :name, :presence => true, :uniqueness => true
   validates_numericality_of :port, :greater_than => 0, :less_than_or_equal_to => Proc.new { |device| device.board.outputs }, :only_integer => true, :allow_nil => true
   validates_uniqueness_of :port, :scope => :board_id, :allow_nil => true
   validates_numericality_of :setting, :less_than_or_equal_to => 180
   validates_numericality_of :setting, :greater_than_or_equal_to => 0
-
-  KINDS = {1 => :relay, 2 => :servo}
 
   def to_xml(options={})
     if options[:builder]
@@ -30,7 +30,7 @@ class Device < ActiveRecord::Base
   end
   
   def readable_kind
-    KINDS[kind]
+    Device::KINDS.key(kind)
   end
   
   private

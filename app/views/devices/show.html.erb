@@ -25,15 +25,19 @@
   <%= @device.readable_kind %>
 </p>
 
+<% if @device.kind == Device::KINDS[:servo] %>
 <p>
   <b>Setting:</b>
   <%= @device.setting %>
 </p>
+<% end %>
 
+<% if @device.kind == Device::KINDS[:relay] %>
 <p>
   <b>State:</b>
   <%= @device.state %>
 </p>
+<% end %>
 
 <p>
   <b>Board:</b>

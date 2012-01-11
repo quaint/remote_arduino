@@ -5,7 +5,8 @@ class ReadingsController < ApplicationController
   # GET /readings
   # GET /readings.xml
   def index
-    @readings = Reading.all
+    @readings = Reading.paginate :page=>params[:page], :order=>'created_at desc',
+        :per_page => 10
 
     respond_to do |format|
       format.html # index.html.erb

@@ -29,7 +29,7 @@
   </div>
 	<div class="field">
     <%= f.label :kind %><br />
-    <%= f.select("device", "kind", Device::KINDS) %>
+    <%= f.select :kind, Device::KINDS %>
   </div>
 	<div class="field">
     <%= f.label :setting %><br />
