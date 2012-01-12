@@ -13,12 +13,21 @@ class ReadingsController < ApplicationController
     end
   end
 
-  # GET /readings/filter/12345
-  # GET /readings/filter/12345.xml
-  def filtered
+  # GET /readings/filter/serial/12345
+  # GET /readings/filter/serial/12345.xml
+  def filter_by_serial
   	sensor = Sensor.where(["serial = ?", params[:serial]]).first
     @readings = Reading.where(:sensor_id => sensor.id).paginate(:page => params[:page]).order('created_at desc').per_page(10)
-	render "index"
+	  render "index"
+  end
+
+  # GET /readings/filter/from/01-01-2012/to/02-01-2012
+  # GET /readings/filter/from/01-01-2012/to/02-01-2012.xml
+  def filter_by_date
+    @from_date = Date.strptime(params[:startdate],"%d-%m-%Y")
+    @to_date = Date.strptime(params[:enddate],"%d-%m-%Y")
+    @readings = Reading.where(["created_at > ? and created_at < ?", @from_date, @to_date]).paginate(:page => params[:page]).order('created_at desc').per_page(10)
+	  render "index"
   end
 
   # GET /readings/1

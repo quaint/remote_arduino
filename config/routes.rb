@@ -11,7 +11,8 @@ Remote::Application.routes.draw do
   match 'boards/sync/:serial' => 'boards#sync', :as => :sync_board, :via => :get
   match 'devices/:id/toggle' => 'devices#toggle', :as => :toggle_device, :via => :post
   match 'readings/upload' => 'readings#upload', :as => :upload_reading, :via => :post
-  match 'readings/filter/:serial' => 'readings#filtered', :as => :filter_readings, :via => :get
+  match 'readings/filter/serial/:serial' => 'readings#filter_by_serial', :as => :filter_serial_readings, :via => :get
+  match 'readings/filter/from/:startdate/to/:enddate' => 'readings#filter_by_date', :as => :filter_date_readings, :via => :get
 
   resources :users
   resources :boards
