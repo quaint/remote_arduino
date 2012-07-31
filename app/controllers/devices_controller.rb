@@ -84,11 +84,12 @@ class DevicesController < ApplicationController
   # POST /devices/1/toggle
   def toggle
     @device = Device.find(params[:id])
+    @device.setting = 0
     @device.state = !@device.state
     if @device.save
       redirect_to(devices_url, :notice => 'Device state toggled.')
     else
-      redirect_to(devices_url, :notice => 'Error during save ' + @device.errors.join(", "))
+      redirect_to(devices_url, :notice => 'Error during save')
     end
   end
 end
