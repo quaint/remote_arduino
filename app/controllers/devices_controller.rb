@@ -88,7 +88,7 @@ class DevicesController < ApplicationController
     if @device.save
       redirect_to(devices_url, :notice => 'Device state toggled.')
     else
-      redirect_to(devices_url, :notice => 'Error during save.')
+      redirect_to(devices_url, :notice => 'Error during save ' + @device.errors.join(", "))
     end
   end
 end
